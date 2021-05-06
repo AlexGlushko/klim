@@ -4,7 +4,7 @@ let buttonClear = document.getElementById('clear');
 buttonClear.addEventListener('click', function (event) {
     let element = document.querySelector('thead');
     element.remove();
-})
+});
 
 button.addEventListener('click', function(event) {
     event.preventDefault();
@@ -20,15 +20,12 @@ button.addEventListener('click', function(event) {
         if (confirm('Кол-во ходок должно быть дожен быть целым или дробным')) {window.location.reload();}
     }
 
-    // console.log(total, count);
-
     const min = 26.00;
     const max = 28.00;
     let counter = [];
 
     for (let i = 0; i < count; i++) {
         counter.push(parseFloat((Math.random() * (min-max) + max).toFixed(2)));
-        console.log(parseFloat((Math.random() * (min-max) + max).toFixed(2)));
     }
 
     let arraySum = counter.reduce(function (a,b) {
@@ -36,30 +33,19 @@ button.addEventListener('click', function(event) {
     })
     let overCount = arraySum - total;
 
-    // if (total-arraySum > 0) {
-    //     overCount = total-arraySum;
-    // } else if (total-arraySum < 0) {
-    //     overCount = (total-arraySum) * -1
-    // }
-
     console.log('Total in array: ',arraySum);
     console.log('Over Count: ', overCount);
     let multiplier = overCount / count;
 
      let recalculated = counter.map(function (value) {
 
-
-            // console.log('Multiplier: ', multiplier);
-
             if (overCount > 0){
                 if (value > (min + multiplier)) {
                     overCount = overCount - multiplier;
-                    // console.log('Over Count: ', parseFloat(overCount).toFixed(2));
                     return parseFloat((value - multiplier).toFixed(2));
                 } else {
                     return value;
                 }
-
             } else if (overCount < 0) {
                 if (value < (max - (multiplier * -1 ))) {
                     overCount = overCount + (multiplier * -1 );
@@ -68,16 +54,14 @@ button.addEventListener('click', function(event) {
                     return value;
                 }
             }
-
-
      })
 
     let newSummary = recalculated.reduce(function (a, b) {
         return a + b;
     })
-    console.log('Recalculated summary: ', newSummary);
-    console.log('Over Count: ', overCount);
-    console.table(recalculated);
+    // console.log('Recalculated summary: ', newSummary);
+    // console.log('Over Count: ', overCount);
+    // console.table(recalculated);
 
 
     function generateTable(result, data) {
@@ -97,7 +81,6 @@ button.addEventListener('click', function(event) {
             let cell = row.insertCell();
             let text = document.createTextNode(element);
             cell.appendChild(text);
-
         }
     }
     let result = document.getElementById("result");

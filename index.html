@@ -12,55 +12,42 @@
     <p class="small pl-2 py-4 ml-auto">v.0.2</p>
 </div>
 <div class="container">
-    <div class="row">
-        <div class="col-md">
-
-            <form id="calculator" class="mt-4">
-                <div class="row">
-                    <div class="col-4">
-                        <div class="form-group">
-                            <div class="input-group mb-3">
-                                <span class="input-group-text">Кол-во тонн</span>
-                                <input type="number" class="form-control" id="total" step="0.001">
-                            </div>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text">Кол-во ходок</span>
-                                <input type="number" id="count" step="1" class="form-control" >
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-8">
-                        <div class="form-group">
-                            <button class="btn btn-primary" type="submit" id="submit" onclick="">Генерировать</button>
-                            <button class="btn btn-secondary" id="clear">Очистить таблицу</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-            <div class="row">
-                <div class="col-3">
-                    <div >Погрешность рассчета:
-                        <div id="overCount" ></div>
-                    </div>
-                </div>
-                <div class="col-9">
-                    <div class="">Сумма сгенерированного массива:
-                        <div id="Summary" class="ml-5"></div>
+    <form id="calculator" class="mt-4 ">
+        <div class="row">
+            <div class="col-3">
+                <div class="form-group">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Кол-во тонн</span>
+                        <input type="number" class="form-control" id="total" step="0.001">
                     </div>
                 </div>
             </div>
-
+            <div class="col-3">
+                <div class="form-group">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Кол-во ходок</span>
+                        <input type="number" id="count" step="1" class="form-control" >
+                    </div>
+                </div>
             </div>
-
-
-            <div id="result" style="margin-top: 40px">
-<!--                <table class="table table-hover" id="table">-->
-
-<!--                </table>-->
+            <div class="col-6">
+                <button class="btn btn-primary" type="submit" id="submit" onclick="">Генерировать</button>
+                <button class="btn btn-secondary" id="clear">Очистить таблицу</button>
             </div>
-
-
         </div>
+    </form>
+    <div class="row pt-3">
+        <div class="col-3">
+            <div >Погрешность рассчета:
+                <div id="overCount" ></div>
+            </div>
+        </div>
+        <div class="col-9">
+            <div class="">Сумма сгенерированного массива:
+                <div id="Summary" class="ml-5"></div>
+            </div>
+        </div>
+        <div id="result" style="margin-top: 40px"></div>
     </div>
 </div>
 
