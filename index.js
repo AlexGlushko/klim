@@ -1,5 +1,10 @@
 let button = document.getElementById('submit');
-let result = document.getElementById('result');
+let buttonClear = document.getElementById('clear');
+
+buttonClear.addEventListener('click', function (event) {
+    let element = document.querySelector('thead');
+    element.remove();
+})
 
 button.addEventListener('click', function(event) {
     event.preventDefault();
@@ -75,27 +80,30 @@ button.addEventListener('click', function(event) {
     console.table(recalculated);
 
 
-    function generateTableHead(table) {
-        let thead = table.createTHead();
+    function generateTable(result, data) {
+        let el = document.createElement('table')
+        el.className = 'table table-hover';
+        result.append(el);
+        let thead = el.createTHead();
         let row = thead.insertRow();
         let th = document.createElement("th");
         let text = document.createTextNode('Сгенерированные значения');
         th.appendChild(text);
         row.appendChild(th);
-    }
-    function generateTable(table, data) {
-        for (let element of data) {
-            let row = table.insertRow();
+        let tbody = el.createTBody()
 
-                let cell = row.insertCell();
-                let text = document.createTextNode(element);
-                cell.appendChild(text);
+        for (let element of data) {
+            let row = tbody.insertRow();
+            let cell = row.insertCell();
+            let text = document.createTextNode(element);
+            cell.appendChild(text);
 
         }
     }
-    let table = document.querySelector("table");
-    generateTableHead(table);
-    generateTable(table, recalculated);
+    let result = document.getElementById("result");
+    console.log(result);
+    // generateTableHead(table);
+    generateTable(result, recalculated);
 
     let printOverCount = document.getElementById('overCount');
     printOverCount.innerText = parseFloat(overCount).toFixed(2);
