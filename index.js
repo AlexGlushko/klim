@@ -14,8 +14,8 @@ fileSelector.addEventListener('change', (event) => {
 
     reader.onload = function() {
 
-         result['pairs'] = reader.result.match(/^(\d+\.\d+)[	|\S|\W|  |](\d)$/gm).map(function (value) {
-            let matchedArray = value.match(/^(\d+\.\d+)[	|\S|\W|  |](\d)$/);
+         result['pairs'] = reader.result.match(/^(\d+\.\d+)[	|\S|\W|  |](\d+)$/gm).map(function (value) {
+            let matchedArray = value.match(/^(\d+\.\d+)[	|\S|\W|  |](\d+)$/);
             return {total: matchedArray[1], count: matchedArray[2]};
         })
 
