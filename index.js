@@ -143,7 +143,7 @@ function calculatePairValues(total, count) {
     if (shift < 0) {
         let shiftRevert = shift * -1;
         recAgain.findIndex(function (element, index) {
-            if (element <= 27.3) {
+            if (element <= 27.4) {
                 let newValue = parseFloat(element+shiftRevert).toFixed(2);
                 return recAgain.splice(index,1, parseFloat(newValue))
             }
@@ -152,7 +152,7 @@ function calculatePairValues(total, count) {
 
     if (shift > 0) {
         recAgain.findIndex(function (element, index) {
-            if (element >= 26.7) {
+            if (element >= 26.6) {
                 let newValue = parseFloat(element - shift).toFixed(2);
                 return recAgain.splice(index,1, parseFloat(newValue))
             }
