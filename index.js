@@ -5,7 +5,7 @@ const fileSelector = document.getElementById('fileInput');
 
 fileSelector.addEventListener('change', (event) => {
     const fileList = event.target.files;
-    console.log(fileList);
+    // console.log(fileList);
 
     const reader = new FileReader();
     reader.readAsText(fileList[0]);
@@ -73,8 +73,8 @@ function calculatePairValues(total, count) {
     })
     let overCount = arraySum - total;
 
-    console.log('Total in array: ',arraySum);
-    console.log('Over Count: ', overCount);
+    // console.log('Total in array: ',arraySum);
+    // console.log('Over Count: ', overCount);
     let multiplier = overCount / count;
 
     let recalculated = counter.map(function (value) {
@@ -107,7 +107,7 @@ function calculatePairValues(total, count) {
 
     let multiplier1 = overCount / count;
 
-    console.log(multiplier1)
+    // console.log(multiplier1)
     let recAgain = recalculated.map(function (value) {
             if (overCount > 0){
                 if (value > (min + multiplier1)) {
@@ -136,8 +136,34 @@ function calculatePairValues(total, count) {
 
     // console.log('Again recalc summary: ', newSummary2);
     // // console.table(recAgain);
-    // console.log('Over Count: ', overCount);
+    // console.log('Over Count: ', newSummary2 -total);
 
+    let shift = newSummary2 - total;
+
+    if (shift < 0) {
+        let shiftRevert = shift * -1;
+        recAgain.findIndex(function (element, index) {
+            if (element <= 27.3) {
+                let newValue = parseFloat(element+shiftRevert).toFixed(2);
+                return recAgain.splice(index,1, parseFloat(newValue))
+            }
+        })
+    }
+
+    if (shift > 0) {
+        recAgain.findIndex(function (element, index) {
+            if (element >= 26.7) {
+                let newValue = parseFloat(element - shift).toFixed(2);
+                return recAgain.splice(index,1, parseFloat(newValue))
+            }
+        })
+    }
+
+
+    let newSummary3 = recAgain.reduce(function (a, b) {
+        return a + b;
+    })
+    // console.table(recAgain);
     function generateTable(result, data) {
         let el = document.createElement('table')
         el.className = 'table table-hover table-bordered';
@@ -182,11 +208,11 @@ function calculatePairValues(total, count) {
         cell3.appendChild(text3);
 
         let cell4 = row.insertCell();
-        let text4 = document.createTextNode(' Т, генер   ' +  parseFloat(newSummary2).toFixed(2));
+        let text4 = document.createTextNode(' Т, генер   ' +  parseFloat(newSummary3).toFixed(2));
         cell4.appendChild(text4);
 
         let cell5 = row.insertCell();
-        let text5 = document.createTextNode(' Т, погреш.   ' +  (( parseFloat(newSummary2).toFixed(3)) - total).toFixed(2));
+        let text5 = document.createTextNode(' Т, погреш.   ' +  (( parseFloat(newSummary3).toFixed(3)) - total).toFixed(2));
         cell5.appendChild(text5);
 
 
@@ -205,8 +231,8 @@ function calculatePairValues(total, count) {
 
 
     let printOverCount = document.getElementById('overCount');
-    printOverCount.innerText = parseFloat(overCount).toFixed(2);
+    printOverCount.innerText = parseFloat(total-newSummary3).toFixed(2);
 
     let printSummary = document.getElementById('Summary');
-    printSummary.innerText = parseFloat(newSummary2).toFixed(2);
+    printSummary.innerText = parseFloat(newSummary3).toFixed(2);
 }
